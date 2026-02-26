@@ -1,4 +1,4 @@
-# Transaction State Machine (Conceptual)
+# Transaction State Machine
 
 ## Scope
 
