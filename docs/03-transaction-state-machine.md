@@ -6,26 +6,22 @@ This document defines a conceptual transaction state model for an e-commerce car
 
 ---
 
-## States
+```mermaid
+stateDiagram-v2
+  [*] --> INITIATED
 
-- INITIATED
-- 3DS_REQUIRED
-- 3DS_SUCCESS
-- 3DS_FAILED
-- AUTH_IN_PROGRESS
-- AUTHORIZED
-- DECLINED
-- UNKNOWN
-- REVERSED
+  INITIATED --> THREE_DS_IN_PROGRESS: 3DS required
+  INITIATED --> AUTH_IN_PROGRESS: 3DS not required
 
----
+  THREE_DS_IN_PROGRESS --> AUTH_IN_PROGRESS: success
+  THREE_DS_IN_PROGRESS --> DECLINED: fail
+  THREE_DS_IN_PROGRESS --> UNKNOWN: timeout
 
-## State Flow (High Level)
+  AUTH_IN_PROGRESS --> AUTHORIZED: rc = "00"
+  AUTH_IN_PROGRESS --> DECLINED: rc != "00"
+  AUTH_IN_PROGRESS --> UNKNOWN: timeout
 
-INITIATED  
-→ 3DS_REQUIRED (if 3DS needed)  
-→ 3DS_SUCCESS or 3DS_FAILED  
-→ AUTH_IN_PROGRESS  
-→ AUTHORIZED or DECLINED  
-
-UNKNOWN may occur in case of timeout.
+  AUTHORIZED --> [*]
+  DECLINED --> [*]
+  UNKNOWN --> [*]
+```
