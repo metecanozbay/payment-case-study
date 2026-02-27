@@ -104,6 +104,38 @@ Related document:
 
 ---
 
+## Case 5 – 3DS Risk-Based Strategy
+
+This case focuses on the strategic decision behind 3DS enforcement.
+
+Instead of defining authentication rules,
+this case analyzes when 3DS should be mandatory
+and when it should be triggered based on risk.
+
+Scope:
+
+- Current state evaluation (3DS applied to all transactions)
+- Conversion vs fraud trade-off analysis
+- Risk segmentation approach
+- High / medium / low risk classification
+- Strategic impact considerations
+
+Why this matters:
+
+3DS enforcement is not only a technical decision.
+It directly impacts:
+
+- Conversion rate
+- Fraud exposure
+- Customer experience
+- Merchant revenue
+
+A structured risk-based strategy helps
+balance security and business performance.
+
+Related document:
+`docs/05-3ds-risk-based-strategy.md`
+
 ## Purpose of This Project
 
 This repository is created as a portfolio case study
