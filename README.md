@@ -1,63 +1,113 @@
-# payment-case-study
+# 3D Secure Flow Modeling – Business Analyst Perspective
 
-Payment domain focused Business Analysis mini-case studies.
+This repository presents a structured modeling of a 3D Secure (3DS) flow
+from a Business Analyst perspective.
 
-This repository contains conceptual BA case studies related to card payment flows, including 3D Secure (3DS) and Authorization processes.
+The purpose of this project is to demonstrate how authentication logic,
+business rules, and transaction state transitions can be clearly defined
+and separated within a payment system.
 
----
-
-## Experience Context
-
-I have around 4 years of hands-on experience in card processing and payment operations.
-
-During this period, I worked on card transaction flows, operational processes, and system integrations.  
-This repository reflects my effort to translate that practical experience into structured Business Analysis artifacts.
+This is not a coding project.
+It focuses on business rule modeling and system behavior analysis.
 
 ---
 
-## Conceptual Case Study Note
+## Case 1 – 3DS Business Rules
 
-This repository presents a conceptual Business Analysis case study.
+This case defines the core business rules behind 3DS authentication.
 
-The flows and business rules are modeled based on:
+Scope:
 
-- EMVCo 3DS 2.x principles  
-- ISO 8583 authorization response logic  
-- Publicly available Visa and Mastercard documentation  
+- Mandatory vs risk-based 3DS
+- SUCCESS / FAIL / TIMEOUT outcomes
+- Authentication decision logic
+- Edge case handling
+- Clear separation from authorization layer
 
-This work does not represent any specific institution or production system.
+Why this matters:
 
----
+3DS authentication result should not directly determine
+the final transaction outcome without structured logic.
 
-## Case 1 – 3D Secure (3DS)
-
-Medium article:  
-https://medium.com/@metecanozbay/3d-secureun-görünmeyen-dünyasına-kısa-bir-yolculuk-5d816dcabe1d
-
-### Scope of this case:
-
-- 3DS decision logic (XOR / OR)
-- Success / failure / timeout scenarios
-- Business rules definition
-- Edge-case considerations
-- Transition to authorization
+Related document:
+`docs/01-3ds-business-rules.md`
 
 ---
 
-## Case 2 – Authorization Flow
+## Case 2 – Authorization Interaction (Contextual Layer)
 
-This case models the authorization stage after 3DS validation.
+Although the main focus is 3DS,
+authorization behavior is considered as a dependent layer.
 
-Covered topics:
+Scope:
 
-- Authorization response handling
-- Success and decline logic
-- Timeout and unknown state handling
-- Retry concept (conceptual)
-- Basic state transition thinking
+- Approved / Declined responses
+- Timeout / unknown scenarios
+- Interaction with 3DS result
+
+Why this matters:
+
+Authentication and authorization are separate domains.
+Understanding their interaction prevents incorrect status mapping.
+
+Related document:
+`docs/02-authorization-flow.md`
 
 ---
 
-## Purpose
+## Case 3 – Transaction State Machine
 
-To demonstrate how hands-on payment operations experience can be structured and expressed using Business Analysis methodology.
+This case models how a transaction moves between states
+after 3DS authentication.
+
+Scope:
+
+- Initial transaction creation
+- 3DS result transition
+- Authorization transition
+- Final states (APPROVED / DECLINED / FAILED)
+
+Why this matters:
+
+A clear state machine:
+
+- Prevents inconsistent updates
+- Improves traceability
+- Simplifies debugging
+
+Related document:
+`docs/03-transaction-state-machine.md`
+
+---
+
+## Case 4 – ER Model & Data Perspective
+
+This case focuses on the data structure supporting the 3DS flow.
+
+Scope:
+
+- Transaction entity
+- 3DS result entity
+- Authorization result entity
+- Relationship modeling
+
+Why this matters:
+
+Data modeling ensures:
+
+- Consistent tracking
+- Accurate reporting
+- Clear separation of authentication and authorization data
+
+Related document:
+`docs/04-er-model.md`
+
+---
+
+## Purpose of This Project
+
+This repository is created as a portfolio case study
+to demonstrate structured 3DS analysis from a Business Analyst perspective.
+
+The project intentionally focuses on clarity,
+rule definition, and system modeling.
